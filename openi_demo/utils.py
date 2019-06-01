@@ -2,11 +2,16 @@ import os
 import numpy as np
 import torch
 import torchvision.transforms as transforms
+import torch.nn as nn
 
 try:
     from PIL import Image as pil_image
 except ImportError:
     pil_image = None
+
+class Flatten(nn.Module):
+  def forward(self, x):
+    return x.view(len(x), -1)
 
 def load_ids(filename):
     fin = open(filename, "r")
